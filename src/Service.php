@@ -4,13 +4,14 @@ namespace Zhmi\Inflector;
 
 use Zhmi\Inflector\Provider\PhpMorphyInflector;
 use Zhmi\Inflector\Result\EmptyInflectionResult;
+use Zhmi\Inflector\Result\InflectionResult;
 
 class Service
 {
     /**
      * Точка входа при склонении слова. Основная функция, которую нужно вызвать для склонения
      * @param string $word Слово, которое нужно просклонять
-     * @return array Массив склонений слова
+     * @return InflectionResult|EmptyInflectionResult Результат склонений слова
      */
     public function inflect($word)
     {
@@ -18,8 +19,8 @@ class Service
 
         try {
 
-            $result = $provider->inflect($word);
-            return $result;
+            $r = $provider->inflect($word);
+            return new InflectionResult($r[0], $r[1], $r[2], $r[3], $r[4], $r[5]);
 
         } catch (\Exception $e) {
 
