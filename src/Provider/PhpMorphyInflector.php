@@ -8,13 +8,15 @@ use Zhmi\Inflector\InflectorException;
 class PhpMorphyInflector extends AbstractInflector
 {
     private $word = '';
+    private $enc = 'utf8';
+    private $loc = 'ru_RU';
 
     protected function prepareWord(&$word)
     {
         parent::prepareWord($word);
         $this->word = $word;
 
-        $word = mb_strtoupper($word, 'windows-1251');
+        $word = strtoupper($word);
     }
 
     /**
@@ -29,10 +31,9 @@ class PhpMorphyInflector extends AbstractInflector
 
     protected function makeInflections($word)
     {
-        $lang = 'ru_RU';
         //TODO Поменять путь до словарей
-        $dicts = __DIR__ . '/../../dicts/windows-1251/'.$lang . '/';
-        $inflector = new \phpMorphy($dicts, $lang);
+        $dicts = __DIR__ . '/../../dicts/' . $this->enc . '/'. $this->loc . '/';
+        $inflector = new \phpMorphy($dicts, $this->loc);
         $forms = $inflector->findWord($word);
 
         if (!($forms instanceof \phpMorphy_WordDescriptor_Collection )) {

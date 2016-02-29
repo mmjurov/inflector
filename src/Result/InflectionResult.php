@@ -17,6 +17,8 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
             $w5 === null ? $w1 : $w5,
             $w6 === null ? $w1 : $w6,
         );
+
+        $this->inflections = $result;
     }
 
     public function getOriginal()
