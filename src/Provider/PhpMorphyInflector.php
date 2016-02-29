@@ -18,7 +18,7 @@ class PhpMorphyInflector extends AbstractInflector
     }
 
     /**
-     * Âîññòàíàâëèâàåò ðåãèñòðû áóêâ ñëîâà ïî âîçìîæíîñòè
+     * Ð’Ð¾ÑÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ Ñ€ÐµÐ³Ð¸ÑÑ‚Ñ€Ñ‹ Ð±ÑƒÐºÐ² ÑÐ»Ð¾Ð²Ð° Ð¿Ð¾ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚Ð¸
      * @param array $inflections
      * @return array
      */
@@ -30,28 +30,28 @@ class PhpMorphyInflector extends AbstractInflector
     protected function makeInflections($word)
     {
         $lang = 'ru_RU';
-        //TODO Ïîìåíÿòü ïóòü äî ñëîâàðåé
+        //TODO ÐŸÐ¾Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð¿ÑƒÑ‚ÑŒ Ð´Ð¾ ÑÐ»Ð¾Ð²Ð°Ñ€ÐµÐ¹
         $dicts = __DIR__ . '/../../dicts/windows-1251/'.$lang . '/';
         $inflector = new \phpMorphy($dicts, $lang);
         $forms = $inflector->findWord($word);
 
         if (!($forms instanceof \phpMorphy_WordDescriptor_Collection )) {
-            throw new PhpMorphyInflectorException('Íå óäàëîñü ïðîñêëîíÿòü ñëîâî ' . $word);
+            throw new PhpMorphyInflectorException('ÐÐµ ÑƒÐ´Ð°Ð»Ð¾ÑÑŒ Ð¿Ñ€Ð¾ÑÐºÐ»Ð¾Ð½ÑÑ‚ÑŒ ÑÐ»Ð¾Ð²Ð¾ ' . $word);
         }
         /** @var \phpMorphy_WordDescriptor $form */
         $form = $forms[0];
 
         if (!($form instanceof \phpMorphy_WordDescriptor )) {
-            throw new PhpMorphyInflectorException('Âíóòðåííÿÿ îøèáêà ñêëîíÿòîðà');
+            throw new PhpMorphyInflectorException('Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½ÑÑ Ð¾ÑˆÐ¸Ð±ÐºÐ° ÑÐºÐ»Ð¾Ð½ÑÑ‚Ð¾Ñ€Ð°');
         }
 
         $result = array();
 
-        $grammems = array('ÈÌ', 'ÐÄ', 'ÄÒ', 'ÂÍ', 'ÒÂ', 'ÏÐ');
+        $grammems = array('Ð˜Ðœ', 'Ð Ð”', 'Ð”Ð¢', 'Ð’Ð', 'Ð¢Ð’', 'ÐŸÐ ');
         foreach ($grammems as $g) {
 
             /** @var \phpMorphy_WordForm  $wordForm */
-            $wordForm = current($form->getWordFormsByGrammems(array($g, 'ÅÄ')));
+            $wordForm = current($form->getWordFormsByGrammems(array($g, 'Ð•Ð”')));
             $result[] = $wordForm->getWord();
         }
 

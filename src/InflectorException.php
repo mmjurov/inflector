@@ -2,7 +2,8 @@
 
 namespace Zhmi\Inflector;
 
-class InflectorException extends \Exception
-{
-
-}
+/**
+ * Class InflectorException
+ * @package Zhmi\Inflector
+ */
+class InflectorException extends \Exception {}

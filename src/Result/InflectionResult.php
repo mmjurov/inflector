@@ -65,37 +65,37 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
         switch ($code)
         {
             case 'nominative':
-            case 'именительный':
+            case 'РёРјРµРЅРёС‚РµР»СЊРЅС‹Р№':
             case '0':
                 $inflectionNum = 0;
                 break;
 
             case 'genitive':
-            case 'родительный':
+            case 'СЂРѕРґРёС‚РµР»СЊРЅС‹Р№':
             case '1':
                 $inflectionNum = 1;
                 break;
 
             case 'dative':
-            case 'дательный':
+            case 'РґР°С‚РµР»СЊРЅС‹Р№':
             case '2':
                 $inflectionNum = 2;
                 break;
 
             case 'accusative':
-            case 'винительный':
+            case 'РІРёРЅРёС‚РµР»СЊРЅС‹Р№':
             case '3':
                 $inflectionNum = 3;
                 break;
 
             case 'instrumental':
-            case 'творительный':
+            case 'С‚РІРѕСЂРёС‚РµР»СЊРЅС‹Р№':
             case '4':
                 $inflectionNum = 4;
                 break;
 
             case 'prepositional':
-            case 'предложный':
+            case 'РїСЂРµРґР»РѕР¶РЅС‹Р№':
             case '5':
                 $inflectionNum = 5;
                 break;
@@ -110,7 +110,7 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
     }
 
     /**
-     * Имплемент для ArrayAccess. Проверяем наличие элемента в массиве
+     * РРјРїР»РµРјРµРЅС‚ РґР»СЏ ArrayAccess. РџСЂРѕРІРµСЂСЏРµРј РЅР°Р»РёС‡РёРµ СЌР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІРµ
      * @param mixed $offset
      * @return bool
      */
@@ -121,7 +121,7 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
     }
 
     /**
-     * Имплемент для ArrayAccess. Возвращаем значение элемента массива
+     * РРјРїР»РµРјРµРЅС‚ РґР»СЏ ArrayAccess. Р’РѕР·РІСЂР°С‰Р°РµРј Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР°
      * @param mixed $offset
      * @return null
      */
@@ -131,7 +131,7 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
     }
 
     /**
-     * Запрещаем устанавливать значение для массива
+     * Р—Р°РїСЂРµС‰Р°РµРј СѓСЃС‚Р°РЅР°РІР»РёРІР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РјР°СЃСЃРёРІР°
      * @param mixed $offset
      * @param mixed $value
      * @return null
@@ -142,7 +142,7 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
     }
 
     /**
-     * Запрещаем удаление элементов из массива
+     * Р—Р°РїСЂРµС‰Р°РµРј СѓРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ РёР· РјР°СЃСЃРёРІР°
      * @param mixed $offset
      * @return null
      */

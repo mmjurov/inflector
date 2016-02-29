@@ -7,8 +7,8 @@ use Zhmi\Inflector\Result\InflectionResultInterface;
 interface InflectorInterface {
 
     /**
-     * @param string $word Слово, которое нужно просклонять
-     * @return InflectionResultInterface Результат со склонениями
+     * @param string $word РЎР»РѕРІРѕ, РєРѕС‚РѕСЂРѕРµ РЅСѓР¶РЅРѕ РїСЂРѕСЃРєР»РѕРЅСЏС‚СЊ
+     * @return InflectionResultInterface Р РµР·СѓР»СЊС‚Р°С‚ СЃРѕ СЃРєР»РѕРЅРµРЅРёСЏРјРё
      */
     function inflect($word);
 }

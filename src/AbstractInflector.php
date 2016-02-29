@@ -5,7 +5,7 @@ namespace Zhmi\Inflector;
 abstract class AbstractInflector implements InflectorInterface
 {
     /**
-     * Функция подготавливает слово к обработке
+     * Р¤СѓРЅРєС†РёСЏ РїРѕРґРіРѕС‚Р°РІР»РёРІР°РµС‚ СЃР»РѕРІРѕ Рє РѕР±СЂР°Р±РѕС‚РєРµ
      * @param $word
      * @return int
      */
@@ -16,7 +16,7 @@ abstract class AbstractInflector implements InflectorInterface
         $length = strlen($word);
 
         if ($length <= 0) {
-            throw new \LogicException('Ошибка при поиске формы слова. Слово не должно быть пустым');
+            throw new \LogicException('РћС€РёР±РєР° РїСЂРё РїРѕРёСЃРєРµ С„РѕСЂРјС‹ СЃР»РѕРІР°. РЎР»РѕРІРѕ РЅРµ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј');
         }
 
         return true;
@@ -29,7 +29,7 @@ abstract class AbstractInflector implements InflectorInterface
     }
 
     /**
-     * Основная логика выборки должна быть тут. Никакого кеша тут быть не должно
+     * РћСЃРЅРѕРІРЅР°СЏ Р»РѕРіРёРєР° РІС‹Р±РѕСЂРєРё РґРѕР»Р¶РЅР° Р±С‹С‚СЊ С‚СѓС‚. РќРёРєР°РєРѕРіРѕ РєРµС€Р° С‚СѓС‚ Р±С‹С‚СЊ РЅРµ РґРѕР»Р¶РЅРѕ
      * @param $word
      * @return mixed
      */

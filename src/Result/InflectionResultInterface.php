@@ -2,6 +2,10 @@
 
 namespace Zhmi\Inflector\Result;
 
+/**
+ * Interface InflectionResultInterface Результат с падежами
+ * @package Zhmi\Inflector\Result
+ */
 interface InflectionResultInterface {
 
     function getOriginal();
