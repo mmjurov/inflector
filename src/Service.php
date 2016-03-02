@@ -2,6 +2,7 @@
 
 namespace Zhmi\Inflector;
 
+use Apix\Cache;
 use Zhmi\Inflector\Provider\PhpMorphyInflector;
 use Zhmi\Inflector\Result\EmptyInflectionResult;
 use Zhmi\Inflector\Result\InflectionResult;
@@ -34,7 +35,12 @@ class Service
 
         try {
 
-            $r = $provider->inflect($word);
+            $cache = new Cache\Files(array());
+            if ( !$r = $cache->load( $word )) {
+                $r = $provider->inflect($word);
+                $cache->save($r, $word, array(), 86400*365);
+            }
+
             $result = new InflectionResult($r[0], $r[1], $r[2], $r[3], $r[4], $r[5]);
             $result->setEncoding($this->encoding);
             return $result;
