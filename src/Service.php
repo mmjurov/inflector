@@ -18,7 +18,7 @@ class Service
 
         } else {
 
-            throw new InflectorException('На данный момент возможно использовать только windows-1251 или urf-8 кодировки');
+            throw new InflectorException('На данный момент возможно использовать только windows-1251 или utf-8 кодировки');
 
         }
     }

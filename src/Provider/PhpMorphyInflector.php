@@ -34,14 +34,26 @@ class PhpMorphyInflector extends AbstractInflector
             return $lowerChar != $char;
         };
 
+        $part = $j = 0;
+        //Слово может быть разделено тире. Каждое слово нужно запомнить отдельно
         for( $i = 0; $i <= $strlen; $i++ ) {
+
             $char = $word[ $i ];
+
+            if ($char == '-') {
+                $part++;
+                $j = 0;
+                continue;
+            }
+
             if ( $isUppercaseChar($char) ) {
                 $this->wordRegister[ $i ] = array(
                     'char' => $char,
-                    'key' => $i,
+                    'key' => $j,
+                    'part' => $part
                 );
             }
+            $j++;
         }
     }
 
@@ -64,7 +76,16 @@ class PhpMorphyInflector extends AbstractInflector
         foreach ($inflections as $word) {
             //Возвращаем слово к нижнему регистру
             $word = mb_strtolower($word, $this->encoding);
+            if (strpos($word, '-')) {
+                $words = explode('-', $word);
+            } else {
+                $words = array($word);
+            }
+
             foreach ($this->wordRegister as $char) {
+
+                $part = $char['part'];
+                $word = &$words[ $part ];
 
                 $key = $char['key'];
                 if ($isSimilarChar($word[ $key ], $char['char'])) {
@@ -72,7 +93,12 @@ class PhpMorphyInflector extends AbstractInflector
                 }
             }
 
-            $newInflections[] = $word;
+            if (count($words) > 0) {
+                $newInflections[] = implode('-', $words);
+            } else {
+                $newInflections[] = $word;
+            }
+
         }
         return $newInflections;
     }
