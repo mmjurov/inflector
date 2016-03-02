@@ -5,6 +5,11 @@ namespace Zhmi\Inflector;
 abstract class AbstractInflector implements InflectorInterface
 {
     /**
+     * @var string Хранит кодировку склонятора
+     */
+    protected $encoding = 'utf-8';
+
+    /**
      * Функция подготавливает слово к обработке
      * @param $word
      * @return int
@@ -22,10 +27,24 @@ abstract class AbstractInflector implements InflectorInterface
         return true;
     }
 
+    /**
+     * Основная функция, которая выполняет склонение. Ее не нужно переопределять в большинстве случаев
+     * @param string $word
+     * @return mixed
+     */
     public function inflect($word)
     {
         $this->prepareWord($word);
         return $this->makeInflections($word);
+    }
+
+    /**
+     * Устанавливает кодировку склонятора. Используется извне в гланом сервисе
+     * @param $encoding
+     */
+    public function setEncoding($encoding)
+    {
+        $this->encoding = $encoding;
     }
 
     /**

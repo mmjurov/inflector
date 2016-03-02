@@ -6,6 +6,7 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
 
     private $inflections = array();
     private $iterator = 0;
+    private $encoding = 'utf-8';
 
     public function __construct($w1, $w2 = null, $w3 = null, $w4 = null, $w5 = null, $w6 = null)
     {
@@ -19,6 +20,11 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
         );
 
         $this->inflections = $result;
+    }
+
+    public function setEncoding($e = 'utf-8')
+    {
+        $this->encoding = $e;
     }
 
     public function getOriginal()
@@ -63,9 +69,13 @@ class InflectionResult implements InflectionResultInterface, \ArrayAccess, \Iter
 
     function getInflection($code)
     {
-        $code = strtolower($code);
-        switch ($code)
-        {
+        if (!is_numeric($code) && $this->encoding != 'utf-8') {
+            $code = mb_strtolower($code, $this->encoding);
+            $code = iconv($this->encoding, 'utf-8', $code);
+        }
+
+        switch ($code) {
+
             case 'nominative':
             case 'именительный':
             case '0':
