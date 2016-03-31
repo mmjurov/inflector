@@ -134,8 +134,15 @@ class PhpMorphyInflector extends AbstractInflector
                 $g = iconv('utf-8', $this->encoding, $g);
             };
             /** @var \phpMorphy_WordForm  $wordForm */
-            $wordForm = current($form->getWordFormsByGrammems(array($g, $countableGrammem)));
-            $result[] = $wordForm->getWord();
+            $wordForms = $form->getWordFormsByGrammems(array($g, $countableGrammem));
+
+            //Слово может быть несклоняемым, в этом случае просто возвращаем то же слово, что и получили на вход
+            if (empty($wordForms)) {
+                $result[] = $word;
+            } else {
+                $wordForm = current($wordForms);
+                $result[] = $wordForm->getWord();
+            }
         }
 
         return $this->restoreWordRegister($result);
