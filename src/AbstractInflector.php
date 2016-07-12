@@ -39,12 +39,21 @@ abstract class AbstractInflector implements InflectorInterface
     }
 
     /**
-     * Устанавливает кодировку склонятора. Используется извне в гланом сервисе
+     * Устанавливает кодировку склонятора. Используется извне в главном сервисе
      * @param $encoding
      */
     public function setEncoding($encoding)
     {
         $this->encoding = $encoding;
+    }
+
+    /**
+     * Получает кодировку, установленную в склоняторе.
+     * @return string
+     */
+    public function getEncoding()
+    {
+        return $this->encoding;
     }
 
     /**

@@ -9,18 +9,13 @@ use Zhmi\Inflector\Result\InflectionResult;
 
 class Service
 {
-    private $encoding = 'utf-8';
+    private $encoding;
 
     public function __construct($encoding = 'utf-8')
     {
-        if ($encoding == 'windows-1251' || $encoding == 'utf-8') {
-
-            $this->encoding = $encoding;
-
-        } else {
-
-            throw new InflectorException('На данный момент возможно использовать только windows-1251 или utf-8 кодировки');
-
+        if (!$encoding) {
+            $encoding = mb_internal_encoding();
+            $encoding = mb_strtolower($encoding);
         }
     }
 
@@ -36,10 +31,10 @@ class Service
         try {
 
             $cache = new Cache\Files(array());
-            if ( !$r = $cache->load( $word )) {
+            //if ( !$r = $cache->load( $word )) {
                 $r = $provider->inflect($word);
                 $cache->save($r, $word, array(), 86400*365);
-            }
+            //}
 
             $result = new InflectionResult($r[0], $r[1], $r[2], $r[3], $r[4], $r[5]);
             $result->setEncoding($this->encoding);
@@ -55,9 +50,7 @@ class Service
 
     protected function getProvider()
     {
-        $provider = new PhpMorphyInflector();
-        $provider->setEncoding($this->encoding);
-        return $provider;
+        return new PhpMorphyInflector($this->encoding);
     }
 
 }
